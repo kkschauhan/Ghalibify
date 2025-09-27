@@ -1,13 +1,13 @@
 {
   "name": "ghalibify",
-  "version": "1.0.0",
-  "description": "A web app that suggests Ghalib couplets based on user scenarios",
+  "version": "1.1.0",
+  "description": "A web app that suggests Ghalib couplets based on user scenarios using a free LLM backend",
   "main": "index.html",
   "scripts": {
     "start": "npx http-server . -p 3000 -o",
     "dev": "npx live-server . --port=3000"
   },
-  "keywords": ["ghalib", "poetry", "urdu", "couplets", "ai"],
+  "keywords": ["ghalib", "poetry", "urdu", "couplets", "ai", "llm"],
   "author": "Your Name",
   "license": "MIT",
   "devDependencies": {

@@ -127,6 +127,7 @@ body {
     margin-bottom: 30px;
 }
 
+
 .couplet-transliteration {
     font-size: 2rem;
     color: #2c3e50;
@@ -202,27 +203,24 @@ body {
     .container {
         padding: 15px;
     }
-    
     .title {
         font-size: 2.5rem;
     }
-    
     .subtitle {
         font-size: 1rem;
     }
-    
     .input-container {
         padding: 20px;
     }
-    
     .couplet-card {
         padding: 25px;
     }
-    
+    .couplet-urdu {
+        font-size: 1.6rem;
+    }
     .couplet-transliteration {
         font-size: 1.5rem;
     }
-    
     .couplet-translation {
         font-size: 1rem;
     }
@@ -232,15 +230,15 @@ body {
     .title {
         font-size: 2rem;
     }
-    
+    .couplet-urdu {
+        font-size: 1.4rem;
+    }
     .couplet-transliteration {
         font-size: 1.3rem;
     }
-    
     .input-container {
         padding: 15px;
     }
-    
     .couplet-card {
         padding: 20px;
     }

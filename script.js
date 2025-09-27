@@ -1,4 +1,16 @@
-// Ghalib's Couplets Database with themes and keywords
+// Ghalibify frontend logic
+
+/*
+ * This file has been rewritten to fetch a relevant Ghalib couplet from a
+ * remote language model instead of only selecting from a static list. It
+ * preserves the original matching logic as a fallback in case the API is
+ * unreachable or returns an error. The API is implemented in
+ * `api/generateCouplet.js` and calls a free-tier Groq model to generate a
+ * suitable couplet in Urdu script with transliteration, English translation
+ * and a theme. See the README for instructions on configuring your API key.
+ */
+
+// Static fallback database of Ghalib's couplets with themes and keywords.
 const ghalibCouplets = [
     {
         urdu: "ہزاروں خواہشیں ایسی کہ ہر خواہش پہ دم نکلے\nبہت نکلے مرے ارمان لیکن پھر بھی کم نکلے",
@@ -72,23 +84,71 @@ const ghalibCouplets = [
     }
 ];
 
-// Function to find the best matching couplet
-function findBestCouplet(scenario) {
+/**
+ * Attempts to fetch a Ghalib couplet from the serverless API. Returns
+ * `null` if the request fails for any reason. The API expects a POST
+ * request with a JSON body containing the user's scenario. On success
+ * it returns an object with `urdu`, `transliteration`, `translation`
+ * and `theme` keys.
+ *
+ * @param {string} scenario - The user provided scenario or feeling.
+ * @returns {Promise<object|null>} - The couplet object or null on failure.
+ */
+async function callGenerateCoupletAPI(scenario) {
+    try {
+        const response = await fetch('/api/generateCouplet', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ scenario })
+        });
+
+        if (!response.ok) {
+            console.error('API responded with status', response.status);
+            return null;
+        }
+
+        const data = await response.json();
+
+        // Basic validation of returned fields. We no longer require an
+        // "urdu" field because the UI does not display Urdu script. Only
+        // transliteration and translation are mandatory. Theme is optional.
+        if (!data || !data.transliteration || !data.translation) {
+            console.error('API response missing expected fields', data);
+            return null;
+        }
+
+        return data;
+    } catch (error) {
+        console.error('Error calling generateCouplet API:', error);
+        return null;
+    }
+}
+
+/**
+ * Fallback matching algorithm used when the LLM request fails. It searches
+ * through the local ghalibCouplets array for the best match based on
+ * keywords, themes and some common emotional words. This logic replicates
+ * the original MVP behaviour.
+ *
+ * @param {string} scenario - The user provided scenario or feeling.
+ * @returns {object} - The best matching couplet from the static list.
+ */
+function findBestCoupletFallback(scenario) {
     const scenarioLower = scenario.toLowerCase();
     let bestMatch = null;
     let bestScore = 0;
 
     ghalibCouplets.forEach(couplet => {
         let score = 0;
-        
-        // Check keyword matches
+
+        // Direct keyword matches
         couplet.keywords.forEach(keyword => {
             if (scenarioLower.includes(keyword)) {
-                score += 2; // Higher weight for direct keyword matches
+                score += 2;
             }
         });
 
-        // Check theme relevance (simplified matching)
+        // Theme word relevance
         const themeKeywords = couplet.theme.toLowerCase().split(/[&\s]+/);
         themeKeywords.forEach(themeWord => {
             if (themeWord.length > 2 && scenarioLower.includes(themeWord)) {
@@ -96,7 +156,7 @@ function findBestCouplet(scenario) {
             }
         });
 
-        // Check for emotional context words
+        // Emotional context words
         const emotionalWords = ['happy', 'sad', 'love', 'heart', 'pain', 'joy', 'sorrow', 'hope', 'fear', 'anger'];
         emotionalWords.forEach(emotion => {
             if (scenarioLower.includes(emotion)) {
@@ -110,7 +170,7 @@ function findBestCouplet(scenario) {
         }
     });
 
-    // If no good match found, return a random couplet
+    // No match found, pick a random couplet
     if (bestScore === 0) {
         return ghalibCouplets[Math.floor(Math.random() * ghalibCouplets.length)];
     }
@@ -118,134 +178,104 @@ function findBestCouplet(scenario) {
     return bestMatch;
 }
 
-// Function to display the couplet
+/**
+ * Updates the UI to display the provided couplet. Assumes that the
+ * corresponding DOM elements exist. It sets the Urdu, transliteration,
+ * translation and theme text content. If an element is missing the
+ * function logs an error to the console.
+ *
+ * @param {object} couplet - A couplet object containing `urdu`,
+ *   `transliteration`, `translation` and optionally `theme`.
+ */
 function displayCouplet(couplet) {
-    console.log('Displaying couplet:', couplet);
-    
     const transliterationElement = document.getElementById('couplet-transliteration');
     const translationElement = document.getElementById('couplet-translation');
     const themeElement = document.getElementById('couplet-theme');
-    
-    console.log('Elements found:', {
-        transliteration: !!transliterationElement,
-        translation: !!translationElement,
-        theme: !!themeElement
-    });
-    
+
+    // Set transliteration if available
     if (transliterationElement) {
-        transliterationElement.textContent = couplet.transliteration;
-        console.log('Set transliteration:', couplet.transliteration);
+        transliterationElement.textContent = couplet.transliteration || '';
     } else {
         console.error('Transliteration element not found!');
     }
-    
+
+    // Set translation if available
     if (translationElement) {
-        translationElement.textContent = couplet.translation;
-        console.log('Set translation:', couplet.translation);
+        translationElement.textContent = couplet.translation || '';
     } else {
         console.error('Translation element not found!');
     }
-    
+
+    // Set theme; hide element if none provided
     if (themeElement) {
-        themeElement.textContent = couplet.theme;
-        console.log('Set theme:', couplet.theme);
-    } else {
-        console.error('Theme element not found!');
+        themeElement.textContent = couplet.theme || '';
+        themeElement.style.display = couplet.theme ? 'inline-block' : 'none';
     }
 }
 
-// Function to show loading animation
+// Loading, results and form reset helpers
 function showLoading() {
     document.getElementById('loading').style.display = 'block';
     document.getElementById('results-section').style.display = 'none';
 }
 
-// Function to hide loading animation
 function hideLoading() {
     document.getElementById('loading').style.display = 'none';
 }
 
-// Function to show results
 function showResults() {
     const resultsSection = document.getElementById('results-section');
     if (resultsSection) {
         resultsSection.style.display = 'block';
-    } else {
-        console.error('Results section not found!');
     }
 }
 
-// Function to reset the form
 function resetForm() {
     document.getElementById('scenario-input').value = '';
     document.getElementById('results-section').style.display = 'none';
 }
 
-// Event listeners
+// Set up event listeners once DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, setting up event listeners...');
-    
     const findButton = document.getElementById('find-couplet');
     const findAnotherButton = document.getElementById('find-another');
     const scenarioInput = document.getElementById('scenario-input');
-    
-    console.log('Elements found:', {
-        findButton: !!findButton,
-        findAnotherButton: !!findAnotherButton,
-        scenarioInput: !!scenarioInput
-    });
-    
+
     if (!findButton || !findAnotherButton || !scenarioInput) {
         console.error('Required elements not found!');
         return;
     }
 
-    findButton.addEventListener('click', function() {
+    findButton.addEventListener('click', async function() {
         const scenario = scenarioInput.value.trim();
-        
         if (!scenario) {
             alert('Please describe your scenario or feeling first!');
             return;
         }
 
-        console.log('Searching for couplet for scenario:', scenario);
         showLoading();
-        
-        // Simulate processing time for better UX
-        setTimeout(() => {
-            try {
-                console.log('Starting couplet search...');
-                const bestCouplet = findBestCouplet(scenario);
-                console.log('Found couplet:', bestCouplet);
-                
-                // Make sure we have a valid couplet
-                if (!bestCouplet || !bestCouplet.transliteration) {
-                    throw new Error('Invalid couplet data');
-                }
-                
-                console.log('About to display couplet...');
-                displayCouplet(bestCouplet);
-                
-                console.log('Hiding loading...');
-                hideLoading();
-                
-                console.log('Showing results...');
-                showResults();
-                
-                console.log('Process completed successfully!');
-            } catch (error) {
-                console.error('Error finding couplet:', error);
-                hideLoading();
-                alert('Sorry, there was an error finding your couplet. Please try again. Error: ' + error.message);
+
+        // Give the UI time to update the loading state
+        setTimeout(async () => {
+            // Try the LLM API first
+            let couplet = await callGenerateCoupletAPI(scenario);
+
+            // Fall back to local matching if API failed
+            if (!couplet) {
+                couplet = findBestCoupletFallback(scenario);
             }
-        }, 1500);
+
+            displayCouplet(couplet);
+            hideLoading();
+            showResults();
+        }, 200);
     });
 
     findAnotherButton.addEventListener('click', function() {
         resetForm();
     });
 
-    // Allow Enter key to trigger search
+    // Allow Ctrl+Enter to trigger search
     scenarioInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter' && e.ctrlKey) {
             findButton.click();
@@ -253,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Add some sample scenarios for inspiration
+// Rotate sample placeholder scenarios for inspiration
 const sampleScenarios = [
     "I'm feeling lost in love",
     "I just achieved something great",
@@ -265,7 +295,6 @@ const sampleScenarios = [
     "I'm experiencing deep sorrow"
 ];
 
-// Add placeholder rotation for inspiration
 let currentPlaceholder = 0;
 setInterval(() => {
     const input = document.getElementById('scenario-input');
@@ -274,20 +303,3 @@ setInterval(() => {
         input.placeholder = `e.g., ${sampleScenarios[currentPlaceholder]}...`;
     }
 }, 3000);
-
-// Test function to verify everything is working
-function testApp() {
-    console.log('Testing Ghalibify app...');
-    console.log('Number of couplets:', ghalibCouplets.length);
-    console.log('Sample couplet:', ghalibCouplets[0]);
-    
-    // Test the matching function
-    const testScenario = "I'm feeling lost in love";
-    const result = findBestCouplet(testScenario);
-    console.log('Test result for "lost in love":', result);
-}
-
-// Run test when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    testApp();
-});
