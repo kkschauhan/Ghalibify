@@ -116,6 +116,38 @@ const ghalibCouplets = [
         theme: "Love's Paradox",
         keywords: ["love", "paradox", "living", "dying", "devotion", "sacrifice", "passion", "intensity"],
         authenticity: "authentic"
+    },
+    {
+        hindi: "न था कुछ तो ख़ुदा था, कुछ न होता तो ख़ुदा होता\nडुबोया मुझ को होने ने, न होता मैं तो क्या होता",
+        transliteration: "Na tha kuch to khuda tha, kuch na hota to khuda hota\nDuboya mujh ko hone ne, na hota main to kya hota",
+        translation: "When there was nothing, God was there; if nothing existed, God would exist\nMy existence has drowned me; if I didn't exist, what would I be?",
+        theme: "Existence & Philosophy",
+        keywords: ["existence", "philosophy", "god", "being", "nothingness", "reality", "meaning", "purpose", "life"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "हम को मालूम है जन्नत की हक़ीक़त लेकिन\nदिल के ख़ुश रखने को ग़ालिब ये ख़्याल अच्छा है",
+        transliteration: "Hum ko maloom hai jannat ki haqeeqat lekin\nDil ke khush rakhne ko Ghalib yeh khayal achha hai",
+        translation: "We know the reality of paradise\nBut Ghalib, this thought is good to keep the heart happy",
+        theme: "Hope & Optimism",
+        keywords: ["hope", "optimism", "happiness", "paradise", "heaven", "joy", "cheer", "positivity", "comfort"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "इश्क़ से तबीयत ने ज़हर का काम लिया\nदवा को भी खाया तो ज़हर का काम लिया",
+        transliteration: "Ishq se tabiyat ne zeher ka kaam liya\nDawa ko bhi khaya to zeher ka kaam liya",
+        translation: "Love made my nature take poison\nEven when I took medicine, it acted like poison",
+        theme: "Love's Pain",
+        keywords: ["love", "pain", "poison", "medicine", "hurt", "suffering", "heartbreak", "agony", "torment"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "दिल से निकलेगी न मर कर भी वफ़ा की उम्मीद\nनहीं है जिस में कुछ भी तो क्या है",
+        transliteration: "Dil se nikle gi na mar kar bhi wafa ki ummeed\nNahi hai jis mein kuch bhi to kya hai",
+        translation: "Even after death, the hope of faithfulness won't leave my heart\nWhat is it that has nothing in it?",
+        theme: "Love & Faithfulness",
+        keywords: ["love", "faithfulness", "loyalty", "devotion", "heart", "romance", "relationship", "commitment", "trust"],
+        authenticity: "authentic"
     }
 ];
 
