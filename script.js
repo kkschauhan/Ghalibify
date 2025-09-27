@@ -13,70 +13,70 @@
 // Static fallback database of Ghalib's couplets with themes and keywords.
 const ghalibCouplets = [
     {
-        urdu: "ہزاروں خواہشیں ایسی کہ ہر خواہش پہ دم نکلے\nبہت نکلے مرے ارمان لیکن پھر بھی کم نکلے",
+        hindi: "हज़ारों ख़्वाहिशें ऐसी कि हर ख़्वाहिश पे दम निकले\nबहुत निकले मेरे अरमान लेकिन फिर भी कम निकले",
         transliteration: "Hazaaron khwahishen aisi ke har khwahish pe dam nikle\nBahut nikle mere armaan lekin phir bhi kam nikle",
         translation: "Thousands of desires, each one so intense that I could die for it\nMany of my wishes were fulfilled, yet still they seem few",
         theme: "Desire & Longing",
         keywords: ["desire", "wish", "longing", "want", "hope", "dream", "aspiration", "yearning", "craving"]
     },
     {
-        urdu: "دل سے نکلے گی نہ مر کر بھی وفا کی امید\nنہیں ہے جس میں کچھ بھی تو کیا ہے",
+        hindi: "दिल से निकलेगी न मर कर भी वफ़ा की उम्मीद\nनहीं है जिस में कुछ भी तो क्या है",
         transliteration: "Dil se nikle gi na mar kar bhi wafa ki ummeed\nNahi hai jis mein kuch bhi to kya hai",
         translation: "Even after death, the hope of faithfulness won't leave my heart\nWhat is it that has nothing in it?",
         theme: "Love & Faithfulness",
         keywords: ["love", "faithfulness", "loyalty", "devotion", "heart", "romance", "relationship", "commitment", "trust"]
     },
     {
-        urdu: "عشق نے غالب نکما کر دیا\nورنہ ہم بھی آدمی تھے کام کے",
+        hindi: "इश्क़ ने ग़ालिब निकम्मा कर दिया\nवर्ना हम भी आदमी थे काम के",
         transliteration: "Ishq ne Ghalib nikamma kar diya\nWarna hum bhi aadmi the kaam ke",
         translation: "Love has made Ghalib worthless\nOtherwise I too was a capable person",
         theme: "Love's Impact",
         keywords: ["love", "worthless", "capable", "transformation", "change", "impact", "effect", "influence"]
     },
     {
-        urdu: "ہم کو معلوم ہے جنت کی حقیقت لیکن\nدل کے خوش رکھنے کو غالب یہ خیال اچھا ہے",
+        hindi: "हम को मालूम है जन्नत की हक़ीक़त लेकिन\nदिल के ख़ुश रखने को ग़ालिब ये ख़्याल अच्छा है",
         transliteration: "Hum ko maloom hai jannat ki haqeeqat lekin\nDil ke khush rakhne ko Ghalib yeh khayal achha hai",
         translation: "We know the reality of paradise\nBut Ghalib, this thought is good to keep the heart happy",
         theme: "Hope & Optimism",
         keywords: ["hope", "optimism", "happiness", "paradise", "heaven", "joy", "cheer", "positivity", "comfort"]
     },
     {
-        urdu: "نہ تھا کچھ تو خدا تھا، کچھ نہ ہوتا تو خدا ہوتا\nڈبویا مجھ کو ہونے نے، نہ ہوتا میں تو کیا ہوتا",
+        hindi: "न था कुछ तो ख़ुदा था, कुछ न होता तो ख़ुदा होता\nडुबोया मुझ को होने ने, न होता मैं तो क्या होता",
         transliteration: "Na tha kuch to khuda tha, kuch na hota to khuda hota\nDuboya mujh ko hone ne, na hota main to kya hota",
         translation: "When there was nothing, God was there; if nothing existed, God would exist\nMy existence has drowned me; if I didn't exist, what would I be?",
         theme: "Existence & Philosophy",
         keywords: ["existence", "philosophy", "god", "being", "nothingness", "reality", "meaning", "purpose", "life"]
     },
     {
-        urdu: "بسکہ دشوار ہے ہر کام کا آساں ہونا\nآدمی کو بھی میسر نہیں انساں ہونا",
+        hindi: "बस्के दुश्वार है हर काम का आसाँ होना\nआदमी को भी मयस्सर नहीं इंसाँ होना",
         transliteration: "Baske dushwar hai har kaam ka aasan hona\nAadmi ko bhi mayassar nahi insaan hona",
         translation: "It is difficult for every task to become easy\nEven becoming human is not easy for a person",
         theme: "Life's Challenges",
         keywords: ["difficult", "challenge", "struggle", "hard", "easy", "human", "life", "effort", "perseverance"]
     },
     {
-        urdu: "عشق سے طبیعت نے زہر کا کام لیا\nدوا کو بھی کھایا تو زہر کا کام لیا",
+        hindi: "इश्क़ से तबीयत ने ज़हर का काम लिया\nदवा को भी खाया तो ज़हर का काम लिया",
         transliteration: "Ishq se tabiyat ne zeher ka kaam liya\nDawa ko bhi khaya to zeher ka kaam liya",
         translation: "Love made my nature take poison\nEven when I took medicine, it acted like poison",
         theme: "Love's Pain",
         keywords: ["love", "pain", "poison", "medicine", "hurt", "suffering", "heartbreak", "agony", "torment"]
     },
     {
-        urdu: "ہم کو معلوم ہے جنت کی حقیقت لیکن\nدل کے خوش رکھنے کو غالب یہ خیال اچھا ہے",
+        hindi: "हम को मालूम है जन्नत की हक़ीक़त लेकिन\nदिल के ख़ुश रखने को ग़ालिब ये ख़्याल अच्छा है",
         transliteration: "Hum ko maloom hai jannat ki haqeeqat lekin\nDil ke khush rakhne ko Ghalib yeh khayal achha hai",
         translation: "We know the reality of paradise\nBut Ghalib, this thought is good to keep the heart happy",
         theme: "Contentment",
         keywords: ["contentment", "satisfaction", "peace", "happiness", "paradise", "bliss", "serenity", "tranquility"]
     },
     {
-        urdu: "عشق میں غم خوار ہونا\nعشق میں غم خوار ہونا",
+        hindi: "इश्क़ में ग़म ख़्वार होना\nइश्क़ में ग़म ख़्वार होना",
         transliteration: "Ishq mein gham khwar hona\nIshq mein gham khwar hona",
         translation: "To be a bearer of sorrows in love\nTo be a bearer of sorrows in love",
         theme: "Love's Sorrow",
         keywords: ["love", "sorrow", "grief", "sadness", "melancholy", "heartache", "despair", "woe", "anguish"]
     },
     {
-        urdu: "ہم کو معلوم ہے جنت کی حقیقت لیکن\nدل کے خوش رکھنے کو غالب یہ خیال اچھا ہے",
+        hindi: "हम को मालूम है जन्नत की हक़ीक़त लेकिन\nदिल के ख़ुश रखने को ग़ालिब ये ख़्याल अच्छा है",
         transliteration: "Hum ko maloom hai jannat ki haqeeqat lekin\nDil ke khush rakhne ko Ghalib yeh khayal achha hai",
         translation: "We know the reality of paradise\nBut Ghalib, this thought is good to keep the heart happy",
         theme: "Wisdom & Acceptance",
@@ -188,9 +188,18 @@ function findBestCoupletFallback(scenario) {
  *   `transliteration`, `translation` and optionally `theme`.
  */
 function displayCouplet(couplet) {
+    const hindiElement = document.getElementById('couplet-hindi');
     const transliterationElement = document.getElementById('couplet-transliteration');
     const translationElement = document.getElementById('couplet-translation');
     const themeElement = document.getElementById('couplet-theme');
+
+    // Set Hindi script if available
+    if (hindiElement) {
+        hindiElement.textContent = couplet.hindi || '';
+        hindiElement.style.display = couplet.hindi ? 'block' : 'none';
+    } else {
+        console.error('Hindi element not found!');
+    }
 
     // Set transliteration if available
     if (transliterationElement) {

@@ -50,7 +50,7 @@ export default async function handler(req, res) {
     messages: [
       {
         role: 'system',
-        content: 'You are an AI assistant that only returns quotes by Mirza Ghalib. When given a scenario, you must respond with a JSON object with the keys "transliteration", "translation", and "theme". Do not include any Urdu script or any other keys. The "transliteration" should be a latin transcription of the original couplet. The "translation" should be an accurate English translation. The "theme" should summarise the primary theme or emotion of the couplet in a few words. Do not include any additional commentary.'
+        content: 'You are an expert on Mirza Ghalib\'s poetry. When given a scenario, respond with a JSON object containing "hindi", "transliteration", "translation", and "theme". The "hindi" should be the original couplet in Devanagari (Hindi) script. The "transliteration" should be a Latin transcription. The "translation" should be a poetic English translation. The "theme" should be a concise theme description. Only use authentic Ghalib couplets that match the emotional context. Ensure the Hindi script is accurate and properly formatted.'
       },
       {
         role: 'user',
@@ -109,14 +109,15 @@ export default async function handler(req, res) {
         // The model should return a JSON object. Attempt to parse it.
         result = JSON.parse(content);
       } catch (err) {
-        // If parsing fails, attempt to coerce newline‑separated values.
-        // Expected order: transliteration, translation, theme
-        const lines = content.split(/\r?\n/).filter(Boolean);
-        result = {
-          transliteration: lines[0] || '',
-          translation: lines[1] || '',
-          theme: lines[2] || ''
-        };
+      // If parsing fails, attempt to coerce newline‑separated values.
+      // Expected order: hindi, transliteration, translation, theme
+      const lines = content.split(/\r?\n/).filter(Boolean);
+      result = {
+        hindi: lines[0] || '',
+        transliteration: lines[1] || '',
+        translation: lines[2] || '',
+        theme: lines[3] || ''
+      };
       }
 
       // If we get here, we have a successful result
