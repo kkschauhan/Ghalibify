@@ -239,22 +239,25 @@ function displayCouplet(couplet) {
 
     // Set Hindi script if available
     if (hindiElement) {
-        hindiElement.textContent = couplet.hindi || '';
-        hindiElement.style.display = couplet.hindi ? 'block' : 'none';
+        const hindiText = (couplet.hindi || '').replace(/\\n/g, '\n');
+        hindiElement.textContent = hindiText;
+        hindiElement.style.display = hindiText ? 'block' : 'none';
     } else {
         console.error('Hindi element not found!');
     }
 
     // Set transliteration if available
     if (transliterationElement) {
-        transliterationElement.textContent = couplet.transliteration || '';
+        const transliterationText = (couplet.transliteration || '').replace(/\\n/g, '\n');
+        transliterationElement.textContent = transliterationText;
     } else {
         console.error('Transliteration element not found!');
     }
 
     // Set translation if available
     if (translationElement) {
-        translationElement.textContent = couplet.translation || '';
+        const translationText = (couplet.translation || '').replace(/\\n/g, '\n');
+        translationElement.textContent = translationText;
     } else {
         console.error('Translation element not found!');
     }

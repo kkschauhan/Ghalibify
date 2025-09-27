@@ -269,16 +269,17 @@ body::before {
 
 .couplet-hindi {
     font-family: 'Noto Sans Devanagari', serif;
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: var(--deep-navy);
     font-weight: 500;
     margin-bottom: 20px;
-    line-height: 1.8;
+    line-height: 2.2;
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     position: relative;
     padding: 15px 0;
+    white-space: pre-line;
 }
 
 .couplet-hindi::before {
@@ -308,7 +309,7 @@ body::before {
     color: var(--soft-gray);
     font-style: italic;
     margin-bottom: 15px;
-    line-height: 1.6;
+    line-height: 1.8;
     text-align: center;
     font-family: 'Crimson Text', serif;
     letter-spacing: 0.3px;
@@ -316,12 +317,13 @@ body::before {
     padding: 10px 0;
     border-top: 1px solid rgba(212, 175, 55, 0.2);
     border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    white-space: pre-line;
 }
 
 .couplet-translation {
     font-size: 1.1rem;
     color: var(--text-dark);
-    line-height: 1.6;
+    line-height: 1.8;
     margin-bottom: 20px;
     text-align: center;
     font-family: 'Crimson Text', serif;
@@ -332,6 +334,7 @@ body::before {
     letter-spacing: 0.2px;
     position: relative;
     padding: 15px 0;
+    white-space: pre-line;
 }
 
 .couplet-translation::before {
@@ -511,13 +514,13 @@ body::before {
     }
     
     .couplet-hindi {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
         padding: 12px 0;
     }
     
     .couplet-hindi::before,
     .couplet-hindi::after {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     .couplet-transliteration {
@@ -544,13 +547,13 @@ body::before {
     
     
     .couplet-hindi {
-        font-size: 1.6rem;
+        font-size: 1.3rem;
         padding: 10px 0;
     }
     
     .couplet-hindi::before,
     .couplet-hindi::after {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     .input-container {
