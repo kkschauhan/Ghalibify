@@ -42,8 +42,8 @@ export default async function handler(req, res) {
 
   // Build the payload for the Groq API call
   // Try multiple models in case one is not available
-  const models = ['llama3-8b-8192', 'llama3.1-8b-8192', 'llama3.1-70b-8192'];
-  const model = models[0]; // Start with the first model
+  const models = ['llama-3.1-8b-instant', 'llama-3.1-70b-versatile'];
+  const model = models[0]; // Start with the cheaper model
   
   const payload = {
     model: model,
@@ -83,8 +83,9 @@ export default async function handler(req, res) {
         const errorText = await response.text();
         console.error(`Groq API error with model ${currentModel}:`, response.status, errorText);
         
-        // If this is a model decommissioned error, try the next model
-        if (errorText.includes('decommissioned') || errorText.includes('not supported')) {
+        // If this is a model decommissioned/not found error, try the next model
+        if (errorText.includes('decommissioned') || errorText.includes('not supported') || 
+            errorText.includes('does not exist') || errorText.includes('model_not_found')) {
           lastError = new Error(`Model ${currentModel} is not available: ${errorText}`);
           continue; // Try next model
         }
