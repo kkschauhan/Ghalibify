@@ -12,7 +12,7 @@
  * function will propagate an error response.
  */
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Only accept POST requests
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
