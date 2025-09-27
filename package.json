@@ -1,6 +1,7 @@
 {
   "name": "ghalibify",
   "version": "1.1.0",
+  "type": "module",
   "description": "A web app that suggests Ghalib couplets based on user scenarios using a free LLM backend",
   "main": "index.html",
   "scripts": {
