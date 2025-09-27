@@ -75,20 +75,6 @@ body::before {
     position: relative;
 }
 
-.title::after {
-    content: '🌹';
-    position: absolute;
-    right: -60px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 2rem;
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(-50%) rotate(0deg); }
-    50% { transform: translateY(-60%) rotate(5deg); }
-}
 
 .subtitle {
     font-size: 1.4rem;
@@ -511,10 +497,6 @@ body::before {
         font-size: 3rem;
     }
     
-    .title::after {
-        right: -40px;
-        font-size: 1.5rem;
-    }
     
     .subtitle {
         font-size: 1.2rem;
@@ -560,9 +542,6 @@ body::before {
         font-size: 2.5rem;
     }
     
-    .title::after {
-        display: none;
-    }
     
     .couplet-hindi {
         font-size: 1.8rem;
