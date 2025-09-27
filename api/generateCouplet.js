@@ -41,8 +41,12 @@ export default async function handler(req, res) {
   }
 
   // Build the payload for the Groq API call
+  // Try multiple models in case one is not available
+  const models = ['llama3-8b-8192', 'llama3.1-8b-8192', 'llama3.1-70b-8192'];
+  const model = models[0]; // Start with the first model
+  
   const payload = {
-    model: 'llama3-70b-8192',
+    model: model,
     messages: [
       {
         role: 'system',
@@ -59,51 +63,76 @@ export default async function handler(req, res) {
     response_format: { type: 'json_object' }
   };
 
-  try {
-    // Use the global fetch API. Node 18+ provides it natively.
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Groq API error:', response.status, errorText);
-      res.status(502).json({ error: 'Failed to fetch completion from Groq', details: errorText });
-      return;
-    }
-
-    const data = await response.json();
-    const choice = data.choices && data.choices[0];
-    const content = choice && choice.message && choice.message.content;
-
-    if (!content) {
-      res.status(502).json({ error: 'Invalid response from Groq' });
-      return;
-    }
-
-    let result;
+  // Try each model until one works
+  let lastError = null;
+  for (const currentModel of models) {
     try {
-      // The model should return a JSON object. Attempt to parse it.
-      result = JSON.parse(content);
-    } catch (err) {
-      // If parsing fails, attempt to coerce newline‑separated values.
-      // Expected order: transliteration, translation, theme
-      const lines = content.split(/\r?\n/).filter(Boolean);
-      result = {
-        transliteration: lines[0] || '',
-        translation: lines[1] || '',
-        theme: lines[2] || ''
-      };
-    }
+      const currentPayload = { ...payload, model: currentModel };
+      
+      // Use the global fetch API. Node 18+ provides it natively.
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`
+        },
+        body: JSON.stringify(currentPayload)
+      });
 
-    res.status(200).json(result);
-  } catch (error) {
-    console.error('Error communicating with Groq:', error);
-    res.status(500).json({ error: 'Internal server error' });
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error(`Groq API error with model ${currentModel}:`, response.status, errorText);
+        
+        // If this is a model decommissioned error, try the next model
+        if (errorText.includes('decommissioned') || errorText.includes('not supported')) {
+          lastError = new Error(`Model ${currentModel} is not available: ${errorText}`);
+          continue; // Try next model
+        }
+        
+        // For other errors, fail immediately
+        res.status(502).json({ error: 'Failed to fetch completion from Groq', details: errorText });
+        return;
+      }
+
+      const data = await response.json();
+      const choice = data.choices && data.choices[0];
+      const content = choice && choice.message && choice.message.content;
+
+      if (!content) {
+        lastError = new Error('Invalid response from Groq');
+        continue; // Try next model
+      }
+
+      let result;
+      try {
+        // The model should return a JSON object. Attempt to parse it.
+        result = JSON.parse(content);
+      } catch (err) {
+        // If parsing fails, attempt to coerce newline‑separated values.
+        // Expected order: transliteration, translation, theme
+        const lines = content.split(/\r?\n/).filter(Boolean);
+        result = {
+          transliteration: lines[0] || '',
+          translation: lines[1] || '',
+          theme: lines[2] || ''
+        };
+      }
+
+      // If we get here, we have a successful result
+      res.status(200).json(result);
+      return;
+      
+    } catch (error) {
+      console.error(`Error with model ${currentModel}:`, error);
+      lastError = error;
+      continue; // Try next model
+    }
   }
+  
+  // If we get here, all models failed
+  console.error('All models failed:', lastError);
+  res.status(500).json({ 
+    error: 'All Groq models are currently unavailable', 
+    details: lastError?.message || 'Unknown error'
+  });
 }
