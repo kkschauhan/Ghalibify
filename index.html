@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghalibify - Find Your Perfect Ghalib Couplet</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Ghalibify</h1>
+            <p class="subtitle">Discover the perfect Ghalib couplet for your moment</p>
+        </header>
+
+        <main class="main-content">
+            <div class="input-section">
+                <div class="input-container">
+                    <label for="scenario-input" class="input-label">Describe your scenario or feeling:</label>
+                    <textarea 
+                        id="scenario-input" 
+                        class="scenario-input" 
+                        placeholder="e.g., feeling lost in love, celebrating success, dealing with heartbreak, missing someone..."
+                        rows="3"
+                    ></textarea>
+                    <button id="find-couplet" class="find-button">Find My Couplet</button>
+                </div>
+            </div>
+
+            <div class="results-section" id="results-section" style="display: none;">
+                <h2 class="results-title">Your Perfect Couplet</h2>
+                <div class="couplet-card" id="couplet-card">
+                    <div class="couplet-transliteration" id="couplet-transliteration"></div>
+                    <div class="couplet-translation" id="couplet-translation"></div>
+                    <div class="couplet-theme" id="couplet-theme"></div>
+                </div>
+                <button id="find-another" class="find-another-button">Find Another</button>
+            </div>
+
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Searching through Ghalib's wisdom...</p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Powered by the timeless wisdom of Mirza Ghalib</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
