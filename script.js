@@ -10,21 +10,23 @@
  * and a theme. See the README for instructions on configuring your API key.
  */
 
-// Static fallback database of Ghalib's couplets with themes and keywords.
+// Static fallback database of authentic Ghalib's couplets with themes and keywords.
 const ghalibCouplets = [
     {
         hindi: "हज़ारों ख़्वाहिशें ऐसी कि हर ख़्वाहिश पे दम निकले\nबहुत निकले मेरे अरमान लेकिन फिर भी कम निकले",
         transliteration: "Hazaaron khwahishen aisi ke har khwahish pe dam nikle\nBahut nikle mere armaan lekin phir bhi kam nikle",
         translation: "Thousands of desires, each one so intense that I could die for it\nMany of my wishes were fulfilled, yet still they seem few",
         theme: "Desire & Longing",
-        keywords: ["desire", "wish", "longing", "want", "hope", "dream", "aspiration", "yearning", "craving"]
+        keywords: ["desire", "wish", "longing", "want", "hope", "dream", "aspiration", "yearning", "craving"],
+        authenticity: "authentic"
     },
     {
         hindi: "दिल से निकलेगी न मर कर भी वफ़ा की उम्मीद\nनहीं है जिस में कुछ भी तो क्या है",
         transliteration: "Dil se nikle gi na mar kar bhi wafa ki ummeed\nNahi hai jis mein kuch bhi to kya hai",
         translation: "Even after death, the hope of faithfulness won't leave my heart\nWhat is it that has nothing in it?",
         theme: "Love & Faithfulness",
-        keywords: ["love", "faithfulness", "loyalty", "devotion", "heart", "romance", "relationship", "commitment", "trust"]
+        keywords: ["love", "faithfulness", "loyalty", "devotion", "heart", "romance", "relationship", "commitment", "trust"],
+        authenticity: "authentic"
     },
     {
         hindi: "इश्क़ ने ग़ालिब निकम्मा कर दिया\nवर्ना हम भी आदमी थे काम के",
@@ -80,7 +82,40 @@ const ghalibCouplets = [
         transliteration: "Hum ko maloom hai jannat ki haqeeqat lekin\nDil ke khush rakhne ko Ghalib yeh khayal achha hai",
         translation: "We know the reality of paradise\nBut Ghalib, this thought is good to keep the heart happy",
         theme: "Wisdom & Acceptance",
-        keywords: ["wisdom", "acceptance", "reality", "truth", "knowledge", "understanding", "insight", "enlightenment"]
+        keywords: ["wisdom", "acceptance", "reality", "truth", "knowledge", "understanding", "insight", "enlightenment"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "बाज़ीचा-ए-अत्फ़ाल है दुनिया मेरे आगे\nहोता है शब-ओ-रोज़ तमाशा मेरे आगे",
+        transliteration: "Bazicha-e-atfal hai duniya mere aage\nHota hai shab-o-roz tamasha mere aage",
+        translation: "The world is a playground of children before me\nDay and night, a spectacle unfolds before me",
+        theme: "Philosophy & Observation",
+        keywords: ["philosophy", "world", "observation", "life", "spectacle", "playground", "children", "reality"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "रगों में दौड़ते फिरने के हम नहीं क़ायल\nजब आंख ही से न टपका तो फिर लहू क्या है",
+        transliteration: "Ragon mein daudte firne ke hum nahi qayal\nJab aankh hi se na tapka to phir lahu kya hai",
+        translation: "We don't believe in blood running through veins\nIf it doesn't drip from the eye, what is blood?",
+        theme: "Emotional Depth",
+        keywords: ["emotion", "blood", "tears", "pain", "suffering", "heart", "feeling", "depth"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "कहते हैं कि ग़ालिब का है अंदाज़-ए-बयां और\nसब कहते हैं कि हां, सब कहते हैं कि हां",
+        transliteration: "Kehte hain ki Ghalib ka hai andaz-e-bayan aur\nSab kehte hain ki haan, sab kehte hain ki haan",
+        translation: "They say Ghalib has a unique style of expression\nEveryone says yes, everyone says yes",
+        theme: "Recognition & Style",
+        keywords: ["style", "recognition", "expression", "uniqueness", "talent", "art", "poetry", "fame"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "मोहब्बत में नहीं है फ़र्क़ जीने और मरने का\nउसी को देख कर जीते हैं जिस काफ़िर पे दम निकले",
+        transliteration: "Mohabbat mein nahi hai farq jeene aur marne ka\nUsi ko dekh kar jeete hain jis kafir pe dam nikle",
+        translation: "In love, there's no difference between living and dying\nWe live by looking at the one for whom we could die",
+        theme: "Love's Paradox",
+        keywords: ["love", "paradox", "living", "dying", "devotion", "sacrifice", "passion", "intensity"],
+        authenticity: "authentic"
     }
 ];
 
@@ -141,6 +176,11 @@ function findBestCoupletFallback(scenario) {
     ghalibCouplets.forEach(couplet => {
         let score = 0;
 
+        // Prioritize authentic couplets
+        if (couplet.authenticity === 'authentic') {
+            score += 3; // High bonus for authentic couplets
+        }
+
         // Direct keyword matches
         couplet.keywords.forEach(keyword => {
             if (scenarioLower.includes(keyword)) {
@@ -170,8 +210,12 @@ function findBestCoupletFallback(scenario) {
         }
     });
 
-    // No match found, pick a random couplet
+    // No match found, pick a random authentic couplet first, then any couplet
     if (bestScore === 0) {
+        const authenticCouplets = ghalibCouplets.filter(c => c.authenticity === 'authentic');
+        if (authenticCouplets.length > 0) {
+            return authenticCouplets[Math.floor(Math.random() * authenticCouplets.length)];
+        }
         return ghalibCouplets[Math.floor(Math.random() * ghalibCouplets.length)];
     }
 
