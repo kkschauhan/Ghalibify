@@ -361,19 +361,10 @@ function findBestCoupletFallback(scenario) {
  *   `transliteration`, `translation` and optionally `theme`.
  */
 function displayCouplet(couplet) {
-    const hindiElement = document.getElementById('couplet-hindi-result');
-    const transliterationElement = document.getElementById('couplet-transliteration-result');
-    const translationElement = document.getElementById('couplet-translation-result');
-    const poetryDisplay = document.getElementById('poetry-display');
-    const resultsSection = document.getElementById('results-section');
-
-    // Hide the default poetry display and show results
-    if (poetryDisplay) {
-        poetryDisplay.style.display = 'none';
-    }
-    if (resultsSection) {
-        resultsSection.style.display = 'block';
-    }
+    const hindiElement = document.getElementById('couplet-hindi');
+    const transliterationElement = document.getElementById('couplet-transliteration');
+    const translationElement = document.getElementById('couplet-translation');
+    const themeElement = document.getElementById('couplet-theme');
 
     // Set Hindi script if available
     if (hindiElement) {
@@ -399,22 +390,22 @@ function displayCouplet(couplet) {
     } else {
         console.error('Translation element not found!');
     }
+
+    // Set theme; hide element if none provided
+    if (themeElement) {
+        themeElement.textContent = couplet.theme || '';
+        themeElement.style.display = couplet.theme ? 'inline-block' : 'none';
+    }
 }
 
 // Loading, results and form reset helpers
 function showLoading() {
-    const loadingSection = document.getElementById('loading-section');
-    const poetryDisplay = document.getElementById('poetry-display');
-    const resultsSection = document.getElementById('results-section');
-    
-    if (loadingSection) loadingSection.style.display = 'block';
-    if (poetryDisplay) poetryDisplay.style.display = 'none';
-    if (resultsSection) resultsSection.style.display = 'none';
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('results-section').style.display = 'none';
 }
 
 function hideLoading() {
-    const loadingSection = document.getElementById('loading-section');
-    if (loadingSection) loadingSection.style.display = 'none';
+    document.getElementById('loading').style.display = 'none';
 }
 
 function showResults() {
@@ -425,15 +416,8 @@ function showResults() {
 }
 
 function resetForm() {
-    const scenarioInput = document.getElementById('scenario-input');
-    const poetryDisplay = document.getElementById('poetry-display');
-    const resultsSection = document.getElementById('results-section');
-    const loadingSection = document.getElementById('loading-section');
-    
-    if (scenarioInput) scenarioInput.value = '';
-    if (poetryDisplay) poetryDisplay.style.display = 'block';
-    if (resultsSection) resultsSection.style.display = 'none';
-    if (loadingSection) loadingSection.style.display = 'none';
+    document.getElementById('scenario-input').value = '';
+    document.getElementById('results-section').style.display = 'none';
 }
 
 // Set up event listeners once DOM is ready
@@ -441,21 +425,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const findButton = document.getElementById('find-couplet');
     const findAnotherButton = document.getElementById('find-another');
     const scenarioInput = document.getElementById('scenario-input');
-    const suggestionItems = document.querySelectorAll('.suggestion-item');
 
     if (!findButton || !findAnotherButton || !scenarioInput) {
         console.error('Required elements not found!');
         return;
     }
-
-    // Add event listeners to suggestion items
-    suggestionItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const text = this.getAttribute('data-text');
-            scenarioInput.value = text;
-            scenarioInput.focus();
-        });
-    });
 
     findButton.addEventListener('click', async function() {
         const scenario = scenarioInput.value.trim();
