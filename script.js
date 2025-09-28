@@ -40,7 +40,80 @@ const ghalibCouplets = [
         transliteration: "Hum ko maloom hai jannat ki haqeeqat lekin\nDil ke khush rakhne ko Ghalib yeh khayal achha hai",
         translation: "We know the reality of paradise\nBut Ghalib, this thought is good to keep the heart happy",
         theme: "Hope & Optimism",
-        keywords: ["hope", "optimism", "happiness", "paradise", "heaven", "joy", "cheer", "positivity", "comfort"]
+        keywords: ["hope", "optimism", "happiness", "paradise", "heaven", "joy", "cheer", "positivity", "comfort"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "बाज़ीचा-ए-अत्फाल है दुनिया मेरे आगे\nहोता है शब-ओ-रोज़ तमाशा मेरे आगे",
+        transliteration: "Bazicha-e-atfal hai duniya mere aage\nHota hai shab-o-roz tamasha mere aage",
+        translation: "The world is a playground before me\nDay and night, it performs a spectacle before me",
+        theme: "Philosophy of Life",
+        keywords: ["life", "world", "philosophy", "existence", "playground", "spectacle", "reality", "perception"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "रगों में दौड़ते फिरने के हम नहीं क़ायल\nजब आंख ही से न टपका तो फिर लहू क्या है",
+        transliteration: "Ragon mein daudte firne ke hum nahi qayal\nJab aankh hi se na tapka to phir lahu kya hai",
+        translation: "We don't believe in blood running through veins\nIf it doesn't drop from the eye, what is blood",
+        theme: "Emotional Expression",
+        keywords: ["blood", "veins", "tears", "emotion", "expression", "feeling", "heart", "suffering"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "दिल-ए-नादान तुझे हुआ क्या है\nआख़िर इस दर्द की दवा क्या है",
+        transliteration: "Dil-e-nadan tujhe hua kya hai\nAakhir is dard ki dava kya hai",
+        translation: "O innocent heart, what has happened to you\nWhat is the cure for this pain, tell me",
+        theme: "Heart and Pain",
+        keywords: ["heart", "pain", "innocence", "cure", "suffering", "emotional", "healing", "distress"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "हम को उनसे वफ़ा की है उम्मीद\nजो नहीं जानते वफ़ा क्या है",
+        transliteration: "Hum ko unse wafa ki hai ummeed\nJo nahi jaante wafa kya hai",
+        translation: "We expect loyalty from those\nWho don't know what loyalty is",
+        theme: "Loyalty and Expectation",
+        keywords: ["loyalty", "expectation", "trust", "betrayal", "faith", "hope", "disappointment", "naivety"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "आह को चाहिए एक उम्र असर होने तक\nकौन जीता है तेरी ज़ुल्फ़ के सर होने तक",
+        transliteration: "Aah ko chahiye ek umr asar hone tak\nKaun jeeta hai teri zulf ke sar hone tak",
+        translation: "A sigh needs a lifetime to have effect\nWho lives until your tresses reach their end",
+        theme: "Love and Patience",
+        keywords: ["sigh", "lifetime", "effect", "tresses", "patience", "love", "time", "beauty"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "हमने देखा है उन आंखों का माहिर-ए-हुस्न\nजो सुबह-ओ-शाम नज़र आते हैं ख़्वाब में",
+        transliteration: "Humne dekha hai un aankhon ka mahir-e-husn\nJo subah-o-sham nazar aate hain khwab mein",
+        translation: "We have seen the beauty expert of those eyes\nWho appear morning and evening in dreams",
+        theme: "Beauty and Dreams",
+        keywords: ["beauty", "eyes", "dreams", "morning", "evening", "vision", "love", "longing"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "ये मसाइल-ए-तसव्वुफ़, ये तिरा बयान 'ग़ालिब'\nतुझे हम वली समझते जो न बादाख़्वार होता",
+        transliteration: "Ye masail-e-tasawwuf, ye tera bayan 'Ghalib'\nTujhe hum wali samajhte jo na badakhwar hota",
+        translation: "These mystical problems, this your expression Ghalib\nWe would consider you a saint if you weren't a wine-drinker",
+        theme: "Mysticism and Wine",
+        keywords: ["mysticism", "expression", "saint", "wine", "spirituality", "paradox", "philosophy", "religion"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "हम को मालूम है जन्नत की हक़ीक़त लेकिन\nदिल के ख़ुश रखने को 'ग़ालिब' ये ख़याल अच्छा है",
+        transliteration: "Hum ko maloom hai jannat ki haqeeqat lekin\nDil ke khush rakhne ko 'Ghalib' ye khayal achha hai",
+        translation: "We know the reality of paradise\nBut to keep the heart happy, Ghalib, this thought is good",
+        theme: "Hope and Reality",
+        keywords: ["paradise", "reality", "hope", "heart", "happiness", "illusion", "comfort", "optimism"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "मोहब्बत में नहीं है फ़र्क़ जीने और मरने का\nउसी को देख कर जीते हैं जिस काफ़िर पे दम निकले",
+        transliteration: "Mohabbat mein nahi hai farq jeene aur marne ka\nUsi ko dekh kar jeete hain jis kaafir pe dam nikle",
+        translation: "In love, there's no difference between living and dying\nWe live by looking at the same infidel for whom we die",
+        theme: "Love and Sacrifice",
+        keywords: ["love", "living", "dying", "sacrifice", "devotion", "passion", "infidel", "paradox"],
+        authenticity: "authentic"
     },
     {
         hindi: "न था कुछ तो ख़ुदा था, कुछ न होता तो ख़ुदा होता\nडुबोया मुझ को होने ने, न होता मैं तो क्या होता",
