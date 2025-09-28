@@ -304,11 +304,11 @@ async function callGenerateCoupletAPI(scenario) {
         }
 
         const data = await response.json();
+        console.log('API Response:', data);
 
-        // Basic validation of returned fields. We no longer require an
-        // "urdu" field because the UI does not display Urdu script. Only
-        // transliteration and translation are mandatory. Theme is optional.
-        if (!data || !data.transliteration || !data.translation) {
+        // Basic validation of returned fields. We require hindi, transliteration,
+        // and translation fields. Theme is optional.
+        if (!data || !data.hindi || !data.transliteration || !data.translation) {
             console.error('API response missing expected fields', data);
             return null;
         }
