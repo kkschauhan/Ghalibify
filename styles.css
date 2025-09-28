@@ -347,26 +347,26 @@ body::before {
 
 .couplet-hindi {
     font-family: 'Noto Sans Devanagari', serif;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     color: var(--deep-navy);
     font-weight: 600;
-    margin-bottom: 20px;
-    line-height: 2.0;
+    margin-bottom: 15px;
+    line-height: 1.8;
     text-align: center;
     text-shadow: 1px 1px 2px var(--shadow-soft);
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     position: relative;
-    padding: 15px 0;
+    padding: 12px 0;
     white-space: pre-line;
 }
 
 .couplet-hindi::before {
     content: '"';
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: var(--primary-gold);
     position: absolute;
-    left: -20px;
-    top: 5px;
+    left: -18px;
+    top: 3px;
     opacity: 0.4;
     font-family: 'Playfair Display', serif;
     line-height: 1;
@@ -374,11 +374,11 @@ body::before {
 
 .couplet-hindi::after {
     content: '"';
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: var(--primary-gold);
     position: absolute;
-    right: -20px;
-    bottom: 5px;
+    right: -18px;
+    bottom: 3px;
     opacity: 0.4;
     font-family: 'Playfair Display', serif;
     line-height: 1;
@@ -549,12 +549,12 @@ body::before {
     }
     
     .couplet-hindi {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
     
     .couplet-hindi::before,
     .couplet-hindi::after {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     .couplet-transliteration,
@@ -574,13 +574,13 @@ body::before {
     }
     
     .couplet-hindi {
-        font-size: 1.1rem;
-        line-height: 1.8;
+        font-size: 0.95rem;
+        line-height: 1.6;
     }
     
     .couplet-hindi::before,
     .couplet-hindi::after {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     .couplet-transliteration,
