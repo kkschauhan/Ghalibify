@@ -221,6 +221,30 @@ const ghalibCouplets = [
         theme: "Love & Faithfulness",
         keywords: ["love", "faithfulness", "loyalty", "devotion", "heart", "romance", "relationship", "commitment", "trust"],
         authenticity: "authentic"
+    },
+    {
+        hindi: "हमने माना कि तग़ाफुल न करोगे लेकिन\nख़ाक हो जाएंगे हम तुमको ख़बर होने तक\nहम को मालूम है जन्नत की हक़ीक़त लेकिन\nदिल के ख़ुश रखने को 'ग़ालिब' ये ख़याल अच्छा है",
+        transliteration: "Humne maana ki taghaful na karoge lekin\nKhaak ho jaayenge hum tumko khabar hone tak\nHum ko maloom hai jannat ki haqeeqat lekin\nDil ke khush rakhne ko 'Ghalib' ye khayal achha hai",
+        translation: "We believed you wouldn't be indifferent\nBut we'll turn to dust before you get the news\nWe know the reality of paradise\nBut to keep the heart happy, Ghalib, this thought is good",
+        theme: "Indifference, Time & Hope",
+        keywords: ["indifference", "time", "dust", "news", "waiting", "patience", "paradise", "hope", "reality"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "ये न थी हमारी क़िस्मत कि विसाल-ए-यार होता\nअगर और जीते रहते यही इंतज़ार होता\nहम को मालूम है जन्नत की हक़ीक़त लेकिन\nदिल के ख़ुश रखने को 'ग़ालिब' ये ख़याल अच्छा है",
+        transliteration: "Ye na thi hamari qismat ki visal-e-yaar hota\nAgar aur jeete rahte yahi intezaar hota\nHum ko maloom hai jannat ki haqeeqat lekin\nDil ke khush rakhne ko 'Ghalib' ye khayal achha hai",
+        translation: "It wasn't our fate to meet the beloved\nIf we lived longer, it would be the same waiting\nWe know the reality of paradise\nBut to keep the heart happy, Ghalib, this thought is good",
+        theme: "Fate, Longing & Hope",
+        keywords: ["fate", "beloved", "meeting", "waiting", "longing", "destiny", "paradise", "hope", "reality"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "कहते हैं कि ग़ालिब का है अन्दाज़-ए-बयां और\nसब का कहना यह ग़ालिब का दीवान क्या है\nहम को मालूम है जन्नत की हक़ीक़त लेकिन\nदिल के ख़ुश रखने को 'ग़ालिब' ये ख़याल अच्छा है",
+        transliteration: "Kehte hain ki Ghalib ka hai andaaz-e-bayan aur\nSab ka kehna yah Ghalib ka deewan kya hai\nHum ko maloom hai jannat ki haqeeqat lekin\nDil ke khush rakhne ko 'Ghalib' ye khayal achha hai",
+        translation: "They say Ghalib has a unique style of expression\nEveryone says this, but what is Ghalib's Diwan\nWe know the reality of paradise\nBut to keep the heart happy, Ghalib, this thought is good",
+        theme: "Poetry, Recognition & Hope",
+        keywords: ["poetry", "style", "expression", "recognition", "fame", "literature", "paradise", "hope", "reality"],
+        authenticity: "authentic"
     }
 ];
 
