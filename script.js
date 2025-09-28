@@ -306,9 +306,9 @@ async function callGenerateCoupletAPI(scenario) {
         const data = await response.json();
         console.log('API Response:', data);
 
-        // Basic validation of returned fields. We require hindi, transliteration,
+        // Basic validation of returned fields. We require transliteration
         // and translation fields. Theme is optional.
-        if (!data || !data.hindi || !data.transliteration || !data.translation) {
+        if (!data || !data.transliteration || !data.translation) {
             console.error('API response missing expected fields', data);
             return null;
         }
@@ -393,19 +393,9 @@ function findBestCoupletFallback(scenario) {
  *   `transliteration`, `translation` and optionally `theme`.
  */
 function displayCouplet(couplet) {
-    const hindiElement = document.getElementById('couplet-hindi');
     const transliterationElement = document.getElementById('couplet-transliteration');
     const translationElement = document.getElementById('couplet-translation');
     const themeElement = document.getElementById('couplet-theme');
-
-    // Set Hindi script if available
-    if (hindiElement) {
-        const hindiText = (couplet.hindi || '').replace(/\\n/g, '\n');
-        hindiElement.textContent = hindiText;
-        hindiElement.style.display = hindiText ? 'block' : 'none';
-    } else {
-        console.error('Hindi element not found!');
-    }
 
     // Set transliteration if available
     if (transliterationElement) {
