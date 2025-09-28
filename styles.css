@@ -30,13 +30,33 @@
 
 body {
     font-family: 'Crimson Text', serif;
-    background: var(--gradient-bg);
+    background: 
+        linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%),
+        radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(114, 47, 55, 0.08) 0%, transparent 50%);
+    background-size: 100% 100%, 100% 100%, 100% 100%;
     min-height: 100vh;
     color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
     animation: fadeIn 1s ease-out;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(212, 175, 55, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.3;
 }
 
 @keyframes fadeIn {
@@ -67,22 +87,99 @@ body::before {
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px 20px;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
     position: relative;
+    align-items: start;
 }
 
-/* Header Styles */
-.header {
-    text-align: center;
-    margin-bottom: 40px;
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+/* Left Section - Share Your Story */
+.left-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px;
+    padding: 40px;
     position: relative;
-    padding: 30px 0;
-    animation: slideInFromTop 0.8s ease-out;
+    animation: slideInFromLeft 0.8s ease-out;
+}
+
+.left-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-gold);
+    border-radius: 20px 20px 0 0;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-gold);
+}
+
+.section-title::before {
+    content: '✍️';
+    font-size: 1.5rem;
+}
+
+.prompt-text {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+/* Right Section - In Ghalib's Voice */
+.right-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+    animation: slideInFromRight 0.8s ease-out;
+}
+
+.right-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-gold);
+    border-radius: 20px 20px 0 0;
+}
+
+.right-section .section-title::before {
+    content: '✨';
+    font-size: 1.5rem;
+}
+
+/* Header Styles - Hidden for new layout */
+.header {
+    display: none;
 }
 
 @keyframes slideInFromTop {
@@ -217,18 +314,92 @@ body::before {
 
 /* Input Section */
 .input-section {
-    background: var(--gradient-card);
-    padding: 40px;
-    border-radius: 25px;
-    box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.1),
-        0 8px 25px rgba(212, 175, 55, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(212, 175, 55, 0.2);
     margin-bottom: 30px;
+}
+
+.input-container {
     position: relative;
-    overflow: hidden;
-    animation: slideInFromLeft 0.8s ease-out 0.2s both;
+    margin-bottom: 30px;
+}
+
+.input-container label {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-gold);
+    margin-bottom: 15px;
+}
+
+.input-container textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 20px;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 15px;
+    font-family: 'Crimson Text', serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    resize: vertical;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.input-container textarea:focus {
+    outline: none;
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.input-container textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+}
+
+/* Inspiration Section */
+.inspiration-section {
+    margin-top: 30px;
+}
+
+.inspiration-title {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.inspiration-suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.suggestion-item:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--primary-gold);
+    transform: translateX(5px);
+}
+
+.suggestion-icon {
+    font-size: 1.2rem;
+    opacity: 0.8;
 }
 
 @keyframes slideInFromLeft {
@@ -312,28 +483,27 @@ body::before {
     background: var(--gradient-gold);
     color: white;
     border: none;
-    padding: 18px 45px;
-    font-size: 1.2rem;
+    padding: 15px 30px;
+    font-size: 1.1rem;
     font-weight: 600;
-    border-radius: 50px;
+    border-radius: 25px;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
     font-family: 'Playfair Display', serif;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    box-shadow: 
-        0 8px 25px rgba(212, 175, 55, 0.4),
-        0 4px 15px rgba(0, 0, 0, 0.1);
-    margin-top: 25px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     position: relative;
     overflow: hidden;
-    animation: fadeInUp 1s ease-out 1.4s both;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }
 
 .find-button::before {
+    content: '✨';
+    font-size: 1.2rem;
+}
+
+.find-button::after {
     content: '';
     position: absolute;
     top: 0;
@@ -415,6 +585,68 @@ body::before {
     color: var(--deep-navy);
     font-weight: 500;
     animation: fadeInUp 0.8s ease-out infinite alternate;
+}
+
+/* Poetry Display Section */
+.poetry-display {
+    display: none;
+    animation: fadeInUp 1s ease-out;
+}
+
+.poetry-content {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.poetry-section {
+    margin-bottom: 25px;
+}
+
+.poetry-section:last-child {
+    margin-bottom: 0;
+}
+
+.poetry-label {
+    display: inline-block;
+    background: var(--primary-gold);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.poetry-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: white;
+    margin-bottom: 15px;
+    white-space: pre-line;
+}
+
+.poetry-separator {
+    height: 2px;
+    background: var(--gradient-gold);
+    border-radius: 1px;
+    position: relative;
+    margin: 20px 0;
+}
+
+.poetry-separator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: var(--primary-gold);
+    border-radius: 50%;
 }
 
 /* Results Section */
