@@ -245,6 +245,38 @@ const ghalibCouplets = [
         theme: "Poetry, Recognition & Hope",
         keywords: ["poetry", "style", "expression", "recognition", "fame", "literature", "paradise", "hope", "reality"],
         authenticity: "authentic"
+    },
+    {
+        hindi: "इमान मुझे रोके है जो खींचे है मुझे कुफ़्र\nकाबा मेरे पीछे है कलीसा मेरे आगे",
+        transliteration: "Imaan mujhe roke hai jo khinche hai mujhe kufr\nKaaba mere peeche hai kaleesa mere aage",
+        translation: "Faith holds me back while disbelief pulls me\nKaaba is behind me, church is ahead of me",
+        theme: "Faith & Doubt",
+        keywords: ["faith", "doubt", "religion", "belief", "disbelief", "spirituality", "conflict", "struggle"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "हर एक बात पे कहते हो तुम के तू क्या है\nतुम्ही कहो के ये अंदाज़-ए-गुफ्तगू क्या है",
+        transliteration: "Har ek baat pe kehte ho tum ke tu kya hai\nTumhi kaho ke yeh andaaz-e-guftagu kya hai",
+        translation: "You ask 'what are you' at every word\nYou tell me what this style of conversation is",
+        theme: "Communication & Identity",
+        keywords: ["communication", "identity", "conversation", "style", "questioning", "self", "dialogue"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "उनको देख कर जीते हैं सभी\nजिसके बगैर जीना हो मुश्किल, वो शख्स तुम हो",
+        transliteration: "Unko dekh kar jeete hain sabhi\nJiske baagair jeena ho mushkil, woh shaks tum ho",
+        translation: "Everyone lives by looking at them\nThe person without whom living is difficult, that's you",
+        theme: "Love & Dependence",
+        keywords: ["love", "dependence", "living", "difficult", "person", "relationship", "necessity"],
+        authenticity: "authentic"
+    },
+    {
+        hindi: "वो अफ़साना जिसे अंजाम तक लाना न हो मुमकिन\nउससे एक खूबसूरत शुरुआत देते हैं लोग",
+        transliteration: "Woh afsana jise anjaam tak laana na ho mumkin\nUsse ek khoobsurat shuruaat dete hain log",
+        translation: "That story which cannot be brought to conclusion\nPeople give it a beautiful beginning",
+        theme: "Stories & Beginnings",
+        keywords: ["story", "conclusion", "beginning", "beautiful", "impossible", "people", "narrative"],
+        authenticity: "authentic"
     }
 ];
 
