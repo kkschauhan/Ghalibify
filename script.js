@@ -269,27 +269,35 @@ function displayCouplet(couplet) {
     const translationElement = document.getElementById('couplet-translation');
     const themeElement = document.getElementById('couplet-theme');
 
-    // Set Hindi script if available
+    // Set Hindi script with Gulzar-style word reveal
     if (hindiElement) {
         const hindiText = (couplet.hindi || '').replace(/\\n/g, '\n');
-        hindiElement.textContent = hindiText;
-        hindiElement.style.display = hindiText ? 'block' : 'none';
+        if (hindiText) {
+            hindiElement.innerHTML = createGulzarReveal(hindiText);
+            hindiElement.style.display = 'block';
+        } else {
+            hindiElement.style.display = 'none';
+        }
     } else {
         console.error('Hindi element not found!');
     }
 
-    // Set transliteration if available
+    // Set transliteration with Gulzar-style word reveal
     if (transliterationElement) {
         const transliterationText = (couplet.transliteration || '').replace(/\\n/g, '\n');
-        transliterationElement.textContent = transliterationText;
+        if (transliterationText) {
+            transliterationElement.innerHTML = createGulzarReveal(transliterationText);
+        }
     } else {
         console.error('Transliteration element not found!');
     }
 
-    // Set translation if available
+    // Set translation with Gulzar-style word reveal
     if (translationElement) {
         const translationText = (couplet.translation || '').replace(/\\n/g, '\n');
-        translationElement.textContent = translationText;
+        if (translationText) {
+            translationElement.innerHTML = createGulzarReveal(translationText);
+        }
     } else {
         console.error('Translation element not found!');
     }
@@ -299,6 +307,21 @@ function displayCouplet(couplet) {
         themeElement.textContent = couplet.theme || '';
         themeElement.style.display = couplet.theme ? 'inline-block' : 'none';
     }
+}
+
+/**
+ * Creates Gulzar-style word-by-word reveal animation
+ * @param {string} text - The text to animate
+ * @returns {string} - HTML with animated word spans
+ */
+function createGulzarReveal(text) {
+    // Split by lines first, then by words within each line
+    const lines = text.split('\n');
+    return lines.map(line => {
+        if (line.trim() === '') return '<br>';
+        const words = line.trim().split(/\s+/);
+        return words.map(word => `<span class="gulzar-word">${word}</span>`).join(' ');
+    }).join('<br>');
 }
 
 // Loading, results and form reset helpers
