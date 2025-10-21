@@ -1,4 +1,4 @@
-# Ghalibify 🌹
+# Ghalibify 
 
 Ghalibify is a modern web application that suggests the perfect Ghalib couplet based on the scenario or feeling you describe. It now leverages a free‑tier language model to fetch authentic Mirza Ghalib poetry on the fly, while still falling back to a curated local collection when necessary.
 
@@ -10,7 +10,7 @@ Just describe your current situation or emotion, click **Find My Couplet**, an
 
 - **AI‑powered matching**: A serverless backend asks a Groq model to return a couplet matching your scenario.
 - **Graceful fallback**: If the API fails, the app falls back to a local keyword‑based matching algorithm.
-- **Transliteration & translation**: Each suggestion includes a Latin transliteration and an English translation. (The original Urdu script is no longer displayed.)
+- **Transliteration & translation**: Each suggestion includes a Latin transliteration and an English translation.
 - **Theme classification**: The returned JSON includes a theme summarising the couplet’s mood or topic.
 - **Responsive design**: Works seamlessly on desktop and mobile devices.
 
